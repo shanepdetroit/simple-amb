@@ -5,7 +5,7 @@ ENV REFRESHED_AT 12/2/2014
 RUN apt-get update
 RUN apt-get install -y socat
 
-ADD forward.sh /usr/local/bin/forward.sh
+ADD forward.sh /forward.sh
 
 # clean any temp files
 RUN apt-get autoclean
@@ -15,4 +15,4 @@ RUN rm -rf /tmp/*
 
 EXPOSE 10000
 
-ENTRYPOINT ["/usr/local/bin/forward.sh"]
+ENTRYPOINT ["/bin/bash","/forward.sh"]
