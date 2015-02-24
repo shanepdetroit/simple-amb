@@ -17,4 +17,4 @@ RUN rm -rf /tmp/*
 EXPOSE 10000
 
 ENTRYPOINT ["socat"]
-CMD ["TCP-LISTEN:10000,fork", "TCP:$ADDR"]
+CMD ["TCP-LISTEN:10000,fork TCP:$ADDR"]
