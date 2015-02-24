@@ -1,11 +1,12 @@
 FROM debian:latest
 MAINTAINER Yann Hodique <hodiquey@vmware.com>
 ENV REFRESHED_AT 12/2/2014
+ENV ADDR ${1:-$FORWARD_ADDR}
 
 RUN apt-get update
 RUN apt-get install -y socat
 
-ADD forward.sh /forward.sh
+#ADD forward.sh /forward.sh
 
 # clean any temp files
 RUN apt-get autoclean
@@ -15,4 +16,5 @@ RUN rm -rf /tmp/*
 
 EXPOSE 10000
 
-ENTRYPOINT ["/bin/bash","/forward.sh"]
+ENTRYPOINT ["socat"]
+CMD["TCP-LISTEN:10000","fork","TCP:$ADDR"]
