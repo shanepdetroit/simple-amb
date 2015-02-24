@@ -15,6 +15,4 @@ RUN apt-get clean
 RUN rm -rf /tmp/*
 
 EXPOSE 10000
-
-ENTRYPOINT ["socat"]
-CMD ["TCP-LISTEN:10000,fork TCP:${1:-$FORWARD_ADDR}"]
+CMD ["socat","TCP-LISTEN:10000,fork TCP:$ADDR"]
